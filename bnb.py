@@ -78,13 +78,13 @@ def optimize_nutrition(food_list, calories_bound, category):
                 best_value = current_node.value
                 best_items = current_node.selected_items
 
-            # Perluas simpul jika masih ada item yang tersisa
+            # Perluas simpul jika masih ada makanan yang tersisa
             if current_node.level < n - 1:
                 next_level = current_node.level + 1
                 next_calories = current_node.calories + food_list[next_level].calories
                 next_value = current_node.value + food_list[next_level].carbs
 
-                # Buat simpul baru jika kapasitas knapsack cukup
+                # Buat simpul baru jika batas kalori cukup
                 if next_calories <= calories_bound:
                     next_items = current_node.selected_items.copy()
                     next_items.append(next_level)
@@ -108,13 +108,13 @@ def optimize_nutrition(food_list, calories_bound, category):
                 best_value = current_node.value
                 best_items = current_node.selected_items
 
-            # Perluas simpul jika masih ada item yang tersisa
+            # Perluas simpul jika masih ada makanan yang tersisa
             if current_node.level < n - 1:
                 next_level = current_node.level + 1
                 next_calories = current_node.calories + food_list[next_level].calories
                 next_value = current_node.value + food_list[next_level].protein
 
-                # Buat simpul baru jika kapasitas knapsack cukup
+                # Buat simpul baru jika batas kalori cukup
                 if next_calories <= calories_bound:
                     next_items = current_node.selected_items.copy()
                     next_items.append(next_level)
@@ -138,13 +138,13 @@ def optimize_nutrition(food_list, calories_bound, category):
                 best_value = current_node.value
                 best_items = current_node.selected_items
 
-            # Perluas simpul jika masih ada item yang tersisa
+            # Perluas simpul jika masih ada makanan yang tersisa
             if current_node.level < n - 1:
                 next_level = current_node.level + 1
                 next_calories = current_node.calories + food_list[next_level].calories
                 next_value = current_node.value + food_list[next_level].fat
 
-                # Buat simpul baru jika kapasitas knapsack cukup
+                # Buat simpul baru jika batas kalori cukup
                 if next_calories <= calories_bound:
                     next_items = current_node.selected_items.copy()
                     next_items.append(next_level)
@@ -166,5 +166,5 @@ def optimize_nutrition(food_list, calories_bound, category):
         # Urutkan simpul berdasarkan nilai batas atasnya
         stack.sort(key=lambda x: x.upper_bound, reverse=True)
 
-    # Mengembalikan nilai terbaik dan item yang dipilih
+    # Mengembalikan nilai terbaik dan makanan yang dipilih
     return best_value, [food_list[i] for i in best_items]
